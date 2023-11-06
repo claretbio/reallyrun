@@ -1,4 +1,4 @@
-# ClaretBio's REALLY Library Processing Softwarea
+# ClaretBio's REALLY Library Processing Software
 
 This software is for the basic informatic processing of sequencing data generated using ClaretBio's REALLY library prep kit with or without using unique molecular identifiers (UMIs).
 
@@ -8,19 +8,23 @@ This software can be installed as a python package using the command `pip instal
 
 # Usage
 
-The basic analysis can be run with `really runsamples` when running on standard libraries or `really runsamples --umi` when running on libraries with UMIs. The software takes in raw fasts and trims adapters, aligns to a user-specified reference genome, and marks duplicates. For UMI aware demltiplexing of REALLY libraries please use our SRSLYumi python package (more info at https://github.com/claretbio/SRSLYumi)
+The basic analysis can be run with `really runsamples` when running on standard libraries or `really runsamples --umi` when running on libraries with UMIs. The software takes in raw fastqs and trims adapters, aligns to a user-specified reference transcriptome, and marks duplicates. For UMI aware demltiplexing of REALLY libraries please use our SRSLYumi python package (more info at https://github.com/claretbio/SRSLYumi)
 
 In order to run, this software requires an installation of conda. For speed, we recommend [mamba](https://mamba.readthedocs.io/en/latest/installation.html) which is best installed from [mambaforge](https://github.com/conda-forge/miniforge#mambaforge). If you prefer to use standard conda, installation instructions can be found [here](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links). 
 
 Required Arguments
 
-    --reference: a path to the reference genome you wish to align to (must be provided unless a STAR index has already been made for the reference, then you can specify the path to the star index using --starindex)
+    --starindex : a path to the STAR index if one exists
+
+    OR
+
+    --reference: a path to the reference genome you wish to have converted to a STAR transcriptome for alignment
 
     --gtf: a path to the GTF of genes that corresponds to the reference you are aligning to, details on GTF format [here](https://useast.ensembl.org/info/website/upload/gff.html)
 
     --refflat: a path to the refFlat of genes that correspond to the reference you are aligning to. For an example refFlat file for GRCh38, see `refFlat.txt.gz` at https://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/.
 
-    --ribosomal: a path to the rRNA interval list that corresponds to the reference you are aligning to. Picard has a tool (https://gatk.broadinstitute.org/hc/en-us/articles/360036716091-BedToIntervalList-Picard-) which can easily convert a BED format file to an interval list.
+    --ribosomal: a path to the rRNA interval list that corresponds to the reference you are aligning to. Picard's [BedToIntervalList tool](https://gatk.broadinstitute.org/hc/en-us/articles/360036716091-BedToIntervalList-Picard-) can be used here. An example interval list can be found [here](https://gist.github.com/slowkow/b11c28796508f03cdf4b).
 
     --libraries or --libfile: the library IDs you would like analzed in comma separated format or the path to a file with one ID per line, repsectively.
 
@@ -29,8 +33,6 @@ Optional Arguments
     --fastqdir : a path to the directory containing the raw fastqs you wish to process (if not specified, defaults to current working directory)
     
     --resultsdir : a path to the directory you would like the output to be in (if not specified, defaults to current working directory)
-
-    --starindex : a path to the STAR index created. This can be done prior to running the pipeline, but the pipeline uses the --reference and --gtf file provided to make one otherwise.
 
     --indexdir: a path to the directory where you would like the STAR index to be created (if not specified, defalts to current working directory). Use one of --starindex or --indexdir, not both
 
