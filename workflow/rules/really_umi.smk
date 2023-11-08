@@ -91,15 +91,6 @@ rule query_name_sort:
         "v2.6.0/bio/picard/sortsam"
 
 
-# rule index_rxdupbam:
-#     output:
-#         "{base}/{sample}/{sample}.{rxdup}bam.bai",
-#     input:
-#         "{base}/{sample}/{sample}.{rxdup}bam",
-#     wrapper:
-#         "v2.6.0/bio/samtools/index"
-
-
 rule umi_tools_group:
     version:
         1
