@@ -1,6 +1,6 @@
 # ClaretBio's REALLY Library Processing Software
 
-This software is for the basic informatic processing of sequencing data generated using ClaretBio's REALLY library prep kit with or without using unique molecular identifiers (UMIs).
+This software is for the basic informatic processing of sequencing data generated using ClaretBio's [REALLY](https://www.claretbio.com/really-technology) library prep kit with or without using unique molecular identifiers (UMIs).
 
 # Installation
 
