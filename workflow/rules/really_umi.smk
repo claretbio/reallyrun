@@ -41,7 +41,7 @@ rule filter_bam:
     message:
         "Retaining only reads mapped in proper pair for {input}"
     output:
-        bam="{base}/{sample}/{sample}.ppmate.bam",
+        bam=temp("{base}/{sample}/{sample}.ppmate.bam"),
     input:
         "{base}/{sample}/{sample}.rxmate.bam",
     params:
@@ -60,7 +60,7 @@ rule fgbio_setmate:
     message:
         "Setting mate tag with fgbio for {input}"
     output:
-        "{base}/{sample}/{sample}.rxmate.bam", # was temp
+        temp("{base}/{sample}/{sample}.rxmate.bam"),
     input:
         "{base}/{sample}/{sample}.rxsort.bam",
     params:
@@ -79,7 +79,7 @@ rule query_name_sort:
     message:
         "Sort {input} by query name",
     output:
-        "{base}/{sample}/{sample}.rxsort.bam", # was temp
+        temp("{base}/{sample}/{sample}.rxsort.bam"),
     input:
         "{base}/{sample}/{sample}.rx.dupbam",
     params:
@@ -107,7 +107,7 @@ rule umi_tools_group:
         "{base}/{sample}/{sample}-umitools.err"
     params:
         min_map_q=0,
-        random_seed=69,
+        random_seed=101,
     shell:
         """
         umi_tools group --output-bam --stdin={input} --stdout={output[0]} \
@@ -123,7 +123,7 @@ rule umi_srslyumi_bamtag:
     message:
         "Moving UMI from fragment name to RX tag on {input}"
     output:
-        "{base}/{sample}/{sample}.rx.dupbam", # was temp
+        temp("{base}/{sample}/{sample}.rx.dupbam"),
     input:
         "{base}/{sample}/{sample}.dupbam",
         "{base}/{sample}/{sample}.dupbam.bai",
