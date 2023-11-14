@@ -20,13 +20,13 @@ Required Arguments
 
     --reference: a path to the reference genome you wish to have converted to a STAR transcriptome for alignment
 
-    --gtf: a path to the GTF of genes that corresponds to the reference you are aligning to, details on GTF format [here](https://useast.ensembl.org/info/website/upload/gff.html)
+    --gtf: a path to the GTF of genes that corresponds to the reference you are aligning to
+    
+    --refflat: a path to the refFlat of genes that correspond to the reference you are aligning to
 
-    --refflat: a path to the refFlat of genes that correspond to the reference you are aligning to. For an example refFlat file for GRCh38, see `refFlat.txt.gz` at https://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/.
+    --ribosomal: a path to the rRNA interval list that corresponds to the reference you are aligning to
 
-    --ribosomal: a path to the rRNA interval list that corresponds to the reference you are aligning to. Picard's [BedToIntervalList tool](https://gatk.broadinstitute.org/hc/en-us/articles/360036716091-BedToIntervalList-Picard-) can be used here. An example interval list can be found [here](https://gist.github.com/slowkow/b11c28796508f03cdf4b).
-
-    --libraries or --libfile: the library IDs you would like analzed in comma separated format or the path to a file with one ID per line, repsectively.
+    --libraries or --libfile: the library IDs you would like analzed in comma separated format or the path to a file with one ID per line, repsectively
 
 Optional Arguments
 
@@ -36,7 +36,16 @@ Optional Arguments
 
     --indexdir: a path to the directory where you would like the STAR index to be created (if not specified, defalts to current working directory). Use one of --starindex or --indexdir, not both
 
+Helpful information about arguments
+
 The library IDs provided should match the beginning of the fastq files. For example, the library ID for the fastq files named `lib1_R1.fastq.gz` and `lib1_R2.fastq.gz` would be `lib1`. This can be provided directly on the command line with a comma separated list: `--libraries lib1,lib2` or as a file that lists one library ID per line: `--libfile libfile.txt`.
+
+Details on GTF format can be found [here](https://useast.ensembl.org/info/website/upload/gff.html)
+
+Picard's [BedToIntervalList tool](https://gatk.broadinstitute.org/hc/en-us/articles/360036716091-BedToIntervalList-Picard-) can be used to generate the ribosomal interval list. An example interval list can be found [here](https://gist.github.com/slowkow/b11c28796508f03cdf4b).
+
+ For an example refFlat file for GRCh38, see `refFlat.txt.gz` at https://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/.
+
 
 Example Command
 ```
