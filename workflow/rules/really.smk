@@ -259,7 +259,7 @@ rule star_index:
         "Creating STAR index"
     threads: 8
     params:
-        extra="--sjdbGTFfile {}".format(config.get("gtf")), ## add gtf file
+        extra="--sjdbGTFfile {}".format(config.get("gtf")),
     log:
         "{}/starIndex/star_index.log".format(config.get("indexdir")),
     wrapper:
